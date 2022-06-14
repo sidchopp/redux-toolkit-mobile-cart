@@ -7,13 +7,15 @@ import { calculateTotals } from './features/cart/cartSlice';
 
 function App() {
   const { cartItems } = useSelector((store) => store.cart);
+  const { isOpen } = useSelector((store) => store.modal);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(calculateTotals());
   }, [cartItems, dispatch]);
   return (
     <main>
-      <Modal />
+      {isOpen && < Modal />}
       <Navbar />
       <CartContainer />
     </main>
